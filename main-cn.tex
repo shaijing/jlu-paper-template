@@ -1,0 +1,146 @@
+% !TeX program = xelatex
+% Compile: latexmk -xelatex main-cn.tex
+% Compatibility shim: paper.cls contains pdfTeX-only output/font-map commands.
+% XeLaTeX uses fontspec in preamble-cn.tex instead; leave paper.cls unchanged.
+\RequirePackage{iftex}
+\ifXeTeX
+  \newcount\pdfoutput
+  \def\pdfmapline#1{}
+  \PassOptionsToPackage{protrusion=false,expansion=false}{microtype}
+  \AddToHook{package/microtype/after}{%
+    \renewcommand{\DisableLigatures}[2][]{}%
+  }
+\else
+  \errmessage{main-cn.tex requires XeLaTeX. Run latexmk -xelatex main-cn.tex}
+\fi
+\documentclass[twocolumn]{paper}
+\input{preamble-cn}
+
+% 替换为真实的题目、作者、学院及联系方式。
+\title{中文论文标题：\\研究方法与应用示例}
+\author[1]{第一作者}
+\author[1]{第二作者}
+\author[1\corrauthor]{第三作者}
+\affiliation[1]{吉林大学某某学院，吉林长春，130012}
+% 多单位示例：\affiliation[2]{合作单位，城市，邮编}
+% 对应作者：\author[1,2]{作者姓名}
+\contribution[\mathsection]{通讯作者}
+\checkdata[通讯邮箱]{\email{author@example.com}}
+\checkdata[项目地址]{\url{https://example.com/project}}
+\checkdata[关键词]{吉林大学；科研论文；研究方法；实验评估}
+\paperlogo{figures/jlu.pdf}
+
+\abstract{%
+此处填写中文摘要。首先介绍研究问题及其实际意义，然后概述现有方法的不足，
+说明本文提出的方法及其主要特点，最后总结实验结果和研究结论。
+摘要应独立、完整，避免使用未经解释的缩写，并以实际研究内容替换本段示例。
+}
+
+\begin{document}
+\maketitle
+
+\section{引言}
+介绍研究背景、问题的重要性以及应用场景，说明现有方法与研究目标之间的差距。
+使用参考文献支持具体论述，例如引用排版工具的经典资料~\citep{lamport1994latex}。
+
+\paragraph{主要贡献。}
+本文的研究贡献可以概括为：
+\begin{itemize}
+  \item 明确研究问题及其关键挑战。
+  \item 提出解决问题的方法，并说明核心设计。
+  \item 通过对比实验和消融实验验证方法的有效性。
+\end{itemize}
+
+\section{相关工作}
+按照研究主题梳理已有工作，讨论不同方法的特点和适用条件，并说明本文方法与已有工作的关系。
+可以同时引用多篇文献~\citep{lamport1994latex,knuth1984texbook}。
+
+\section{研究方法}
+\subsection{问题定义}
+设输入为 $\vect{x}_i\in\R^d$，对应目标为 $y_i$。
+给定数据集 $\mathcal{D}=\{(\vect{x}_i,y_i)\}_{i=1}^{N}$，优化目标为
+\begin{equation}
+  \mathcal{L}(\theta)=\frac{1}{N}\sum_{i=1}^{N}
+  \ell\bigl(f_\theta(\vect{x}_i),y_i\bigr).
+  \label{eq:objective}
+\end{equation}
+其中，$\theta$ 表示模型参数，$f_\theta$ 表示模型，$\ell$ 表示损失函数。
+
+\subsection{方法设计}
+详细描述方法的组成、执行步骤和实现条件。
+优化目标见\cref{eq:objective}，整体流程见\cref{fig:pipeline}。
+\begin{highlightbox}[核心思想]
+此处填写方法的关键思想、研究假设或主要设计原则。
+\end{highlightbox}
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[node distance=4mm,
+    stage/.style={draw=jlublue,fill=jlublue!5,rounded corners,
+      minimum width=20mm,minimum height=10mm,font=\small}]
+    \node[stage] (input) {输入数据};
+    \node[stage,right=of input] (method) {研究方法};
+    \node[stage,right=of method] (output) {输出结果};
+    \draw[->,thick,color=jlublue] (input) -- (method);
+    \draw[->,thick,color=jlublue] (method) -- (output);
+  \end{tikzpicture}
+  % 外部图片示例：\includegraphics[width=\linewidth]{your-figure.pdf}
+  \caption{方法流程示例，请替换为实际研究流程。}
+  \label{fig:pipeline}
+\end{figure}
+
+\begin{theorem}[示例命题]
+若损失函数 $\ell$ 非负，则 $\mathcal{L}(\theta)\geq 0$。
+\end{theorem}
+\begin{proof}
+\cref{eq:objective}中的各项均为非负数，因此其平均值非负。
+\end{proof}
+
+\section{实验与分析}
+\subsection{实验设置}
+说明数据集、对比方法、评价指标、参数配置、软件版本与硬件环境，
+提供足够的信息以便其他研究者复现实验。
+
+\subsection{实验结果}
+\Cref{tab:results}展示三线表的写法。表中数据仅为排版示例，不是实际实验结果。
+\begin{table}[t]
+  \centering
+  \caption{实验结果示例（数据为占位值）。}
+  \label{tab:results}
+  \begin{tabular}{lrr}
+    \toprule
+    方法 & 得分 $\uparrow$ & 耗时 $\downarrow$ \\
+    \midrule
+    基线方法 A & 72.1 & 1.20 \\
+    基线方法 B & 75.3 & 1.05 \\
+    本文方法 & \textbf{79.4} & \textbf{0.92} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+分析实验结果、误差来源和失效情形。跨双栏图表可使用 \texttt{figure*} 或 \texttt{table*}。
+
+\subsection{消融实验}
+分别移除或替换各个模块，分析其对结果的影响，说明不同设计的作用。
+
+\section{结论}
+总结主要研究成果与应用意义，说明方法的局限，并提出未来研究方向。
+
+\section*{致谢}
+此处填写资助项目及致谢信息。
+
+% 示例沿用 plainnat；投稿时按期刊要求选择参考文献样式。
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\clearpage
+\onecolumn
+\appendix
+\section{补充材料}
+\label{app:details}
+附录默认采用单栏排版，可放置详细推导、补充实验和实现细节。
+如需保留双栏，删除本文件中的 \verb|\onecolumn|。
+
+\subsection{复现信息}
+记录数据版本、预处理步骤、超参数、随机种子以及软硬件环境。
+
+\end{document}

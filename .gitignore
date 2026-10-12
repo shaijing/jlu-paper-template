@@ -1,0 +1,57 @@
+# LaTeX 编译中间文件
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.lol
+*.loa
+*.fls
+*.fdb_latexmk
+*.synctex
+*.synctex.gz
+*.synctex(busy)
+*.synctex.gz(busy)
+*.dvi
+*.xdv
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+*.idx
+*.ind
+*.ilg
+*.glo
+*.gls
+*.glg
+*.glg-*
+*.glo-*
+*.gls-*
+*.acn
+*.acr
+*.alg
+*.ist
+*.glstex
+*.thm
+*.loe
+*.auxlock
+*.bbl-SAVE-ERROR
+*.bcf-SAVE-ERROR
+
+# 编译缓存及临时输出目录
+_minted*/
+build/
+
+# 编辑器临时文件
+*.swp
+*.swo
+*~
+*.bak
+
+# 忽略主文档编译产物，保留插图 PDF、源文件及配套字体
+/main.pdf
+/main-cn.pdf

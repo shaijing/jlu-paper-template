@@ -1,0 +1,42 @@
+% Load after paper.cls. Chinese text uses TeX Live's bundled Fandol fonts.
+\usepackage[UTF8,fontset=fandol,scheme=plain,heading=false]{ctex}
+\input{preamble}
+
+% Replace the pdfTeX-specific Latin font setup locally for XeLaTeX.
+\setmainfont{Latin Modern Roman}
+\setsansfont{ByteSans-Medium.ttf}[Path=fonts/,BoldFont=ByteSans-Bold.ttf]
+\newfontfamily\jlufrontbold{ByteSans-Bold.ttf}[Path=fonts/,BoldFont=ByteSans-Bold.ttf]
+\newfontfamily\jlufrontmedium{ByteSans-Medium.ttf}[Path=fonts/,BoldFont=ByteSans-Bold.ttf]
+\renewcommand{\frontsans}{\jlufrontbold\heiti}
+\renewcommand{\frontmedium}{\jlufrontmedium\heiti}
+\setlength{\parindent}{2em}
+
+\renewcommand{\beginabstract}{\abstractfont\frontsans\bfseries\jlublue{摘要}\par}
+\addto\captionsenglish{%
+  \renewcommand{\refname}{参考文献}%
+  \renewcommand{\figurename}{图}%
+  \renewcommand{\tablename}{表}%
+  \renewcommand{\proofname}{证明}%
+}
+\patchcmd{\theorem}{Theorem}{定理}{}{}
+\patchcmd{\lemma}{Lemma}{引理}{}{}
+\patchcmd{\definition}{Definition}{定义}{}{}
+\patchcmd{\remark}{Remark}{注}{}{}
+\crefname{equation}{式}{式}
+\Crefname{equation}{式}{式}
+\crefname{figure}{图}{图}
+\Crefname{figure}{图}{图}
+\crefname{table}{表}{表}
+\Crefname{table}{表}{表}
+\crefname{section}{节}{节}
+\Crefname{section}{节}{节}
+\crefname{theorem}{定理}{定理}
+\Crefname{theorem}{定理}{定理}
+\fancypagestyle{firststyle}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyhead[L]{{\frontmedium\small\color{jlublue}吉林大学\quad JILIN UNIVERSITY}}
+  \fancyhead[R]{%
+    \ifdefempty{\paperlogofile}{}{\includegraphics[height=13.5mm]{\paperlogofile}}%
+  }
+}

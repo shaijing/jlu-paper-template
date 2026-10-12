@@ -1,0 +1,39 @@
+% Jilin University theme overrides; paper.cls only renames the theme color.
+% geometry also uses addtolist; preserve the class metadata helper.
+\let\jlusavedaddtolist\addtolist
+\geometry{a4paper,headheight=43pt}
+\let\addtolist\jlusavedaddtolist
+\DeclareTextFontCommand{\textbf}{\bfseries}
+\paperlogo{figures/jlu.pdf}
+\fancypagestyle{firststyle}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyhead[L]{{\frontmedium\small\color{jlublue}JILIN UNIVERSITY}}
+  \fancyhead[R]{%
+    \ifdefempty{\paperlogofile}{}{\includegraphics[height=13.5mm]{\paperlogofile}}%
+  }
+}
+
+% Add paper-specific packages and commands here.
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{tikz}
+\graphicspath{{figures/}}
+\setlist[itemize]{leftmargin=*,nosep}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\R}{\mathbb{R}}
+
+% Highlight box, matching the blue palette of the title and abstract.
+\newtcolorbox{highlightbox}[1][Key idea]{
+  colback=jlublue!4,colframe=jlublue,boxrule=0.5pt,
+  arc=1.5mm,title=#1,fonttitle=\bfseries,
+  left=2mm,right=2mm,top=2mm,bottom=2mm
+}
+
+\usetikzlibrary{positioning}

@@ -1,0 +1,141 @@
+% Compile with pdfLaTeX (the bundled ByteSans fonts use pdfTeX mappings).
+\documentclass[twocolumn]{paper}
+\input{preamble}
+
+% Jilin University research paper: replace the title and author information.
+\title{Your Paper Title:\\A Clear and Concise Subtitle}
+\author[1]{First Author}
+\author[1]{Second Author}
+\author[1\corrauthor]{Third Author}
+\affiliation[1]{School of Your Discipline, Jilin University, Changchun, China}
+% For a collaborating institution, add \affiliation[2]{Institution, City, Country}
+% and use \author[1,2]{Author Name}.
+\contribution[\mathsection]{Corresponding author}
+\correspondence{\email{author@example.com}}
+\checkdata[Code]{\url{https://example.com/project}}
+% The Jilin University emblem is included; use \paperlogo{} to hide it.
+\paperlogo{figures/jlu.pdf}
+% \date{October 2026}
+
+\abstract{%
+State the problem and explain why it matters. Briefly describe the limitation
+of existing approaches, introduce your method, and summarize the main results.
+Conclude with the practical significance of your findings. Replace this text
+with a self-contained abstract of approximately 150--250 words.
+}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+Introduce the research problem, its motivation, and the setting in which it
+arises. Explain the gap between current methods and the desired outcome.
+Use citations to support specific claims, for example the standard reference
+on typesetting by \citet{lamport1994latex}.
+
+\paragraph{Contributions.}
+Summarize the contributions in concrete terms:
+\begin{itemize}
+  \item A formulation of the problem and its main challenges.
+  \item A method that addresses the identified limitations.
+  \item An evaluation with appropriate baselines and ablations.
+\end{itemize}
+
+\section{Related Work}
+Organize prior work by theme and explain how your approach relates to it.
+Multiple references can be cited together~\citep{lamport1994latex,knuth1984texbook}.
+
+\section{Method}
+\subsection{Problem Formulation}
+Let $\vect{x}_i\in\R^d$ denote an input and $y_i$ its target. Given a dataset
+$\mathcal{D}=\{(\vect{x}_i,y_i)\}_{i=1}^N$, we optimize
+\begin{equation}
+  \mathcal{L}(\theta)=\frac{1}{N}\sum_{i=1}^N
+  \ell\bigl(f_\theta(\vect{x}_i),y_i\bigr).
+  \label{eq:objective}
+\end{equation}
+Define all symbols before introducing the method.
+
+\subsection{Proposed Approach}
+Describe the steps needed to reproduce the approach. Refer to
+\cref{eq:objective} for the objective and \cref{fig:pipeline} for an overview.
+\begin{highlightbox}
+Replace this box with a central insight, research question, or concise
+summary of the proposed method.
+\end{highlightbox}
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[node distance=4mm,
+    stage/.style={draw=jlublue,fill=jlublue!5,rounded corners,
+                  minimum width=20mm,minimum height=10mm,font=\small}]
+    \node[stage] (input) {Input};
+    \node[stage,right=of input] (method) {Method};
+    \node[stage,right=of method] (output) {Output};
+    \draw[->,thick,color=jlublue] (input) -- (method);
+    \draw[->,thick,color=jlublue] (method) -- (output);
+  \end{tikzpicture}
+  % To use an external figure instead:
+  % \includegraphics[width=\linewidth]{your-figure.pdf}
+  \caption{An example pipeline. Replace it with an overview of your method.}
+  \label{fig:pipeline}
+\end{figure}
+
+\begin{theorem}[Example statement]
+If $\ell$ is nonnegative, then $\mathcal{L}(\theta)\geq 0$.
+\end{theorem}
+\begin{proof}
+Every summand in \cref{eq:objective} is nonnegative.
+\end{proof}
+
+\section{Experiments}
+\subsection{Experimental Setup}
+Describe datasets, baselines, metrics, implementation details, and resources.
+Report enough information for another researcher to reproduce the evaluation.
+
+\subsection{Main Results}
+\Cref{tab:results} illustrates a compact three-line table. All numbers below
+are placeholders, rather than measured experimental results.
+\begin{table}[t]
+  \centering
+  \caption{Example results (illustrative values only).}
+  \label{tab:results}
+  \begin{tabular}{lrr}
+    \toprule
+    Method & Score $\uparrow$ & Time $\downarrow$ \\
+    \midrule
+    Baseline A & 72.1 & 1.20 \\
+    Baseline B & 75.3 & 1.05 \\
+    Ours & \textbf{79.4} & \textbf{0.92} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+Discuss effect sizes and uncertainty, along with relevant failure cases.
+Use \texttt{table*} or \texttt{figure*} for content spanning both columns.
+
+\subsection{Ablation Study}
+Isolate the effect of each component and explain what the results reveal.
+
+\section{Conclusion}
+Summarize the findings and their implications. State the limitations and
+identify concrete directions for future work.
+
+\section*{Acknowledgments}
+Add acknowledgments and funding information here when appropriate.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\clearpage
+\onecolumn
+\appendix
+\section{Additional Details}
+\label{app:details}
+The appendix uses a single-column layout for longer derivations, additional
+experiments, and implementation details. Remove \verb|\onecolumn| in
+\texttt{main.tex} if you prefer a two-column appendix.
+
+\subsection{Reproducibility Checklist}
+Record dataset versions, preprocessing, hyperparameters, random seeds,
+software versions, and the hardware used for the experiments.
+
+\end{document}
