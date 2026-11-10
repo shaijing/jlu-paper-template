@@ -21,6 +21,7 @@
 \graphicspath{{figures/}}
 \setlist[itemize]{leftmargin=*,nosep}
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
@@ -34,6 +35,31 @@
   colback=jlublue!4,colframe=jlublue,boxrule=0.5pt,
   arc=1.5mm,title=#1,fonttitle=\bfseries,
   left=2mm,right=2mm,top=2mm,bottom=2mm
+}
+
+% Color-coded boxes for important mathematical statements and proofs.
+% Wrap an existing theorem, proposition, equation, or proof environment so
+% its numbering and labels continue to work as usual.
+\tcbset{jlu math box/.style={
+  enhanced,breakable,boxrule=0.6pt,arc=1mm,
+  left=1mm,right=1mm,top=1mm,bottom=1mm,
+  before skip=8pt,after skip=8pt
+}}
+\newtcolorbox{mainresultbox}{
+  jlu math box,colback=jlublue!3,colframe=jlublue!70!black
+}
+\newtcolorbox{keypropositionbox}{
+  jlu math box,colback=green!3,colframe=green!40!black
+}
+\newtcolorbox{keylemmabox}{
+  jlu math box,colback=teal!3,colframe=teal!45!black
+}
+\newtcolorbox{definitionbox}{
+  jlu math box,colback=violet!3,colframe=violet!45!black
+}
+\newtcolorbox{keyproofbox}{
+  jlu math box,colback=orange!4,colframe=orange!45!black,
+  before skip=4pt
 }
 
 \usetikzlibrary{positioning}
