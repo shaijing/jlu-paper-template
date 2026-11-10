@@ -115,6 +115,36 @@ latexmk -c main-cn.tex
 \end{highlightbox}
 ```
 
+### 公式与证明的配色框
+
+`preamble.tex` 预定义了五个可换行的配色框：
+
+| 环境 | 配色 | 用途 |
+| --- | --- | --- |
+| `mainresultbox` | 校蓝 | 主要定理或核心结果 |
+| `keypropositionbox` | 绿色 | 关键命题或公式 |
+| `keylemmabox` | 青色 | 引理 |
+| `definitionbox` | 紫色 | 定义 |
+| `keyproofbox` | 橙色 | 对应的证明 |
+
+在配色框中放入 `theorem`、`proposition`、`lemma`、`definition`、`equation` 或 `proof`，原环境的编号和 `\label` 引用仍然有效。例如：
+
+```tex
+\begin{keylemmabox}
+  \begin{lemma}\label{lem:example}
+  此处填写引理。
+  \end{lemma}
+\end{keylemmabox}
+
+\begin{definitionbox}
+  \begin{definition}\label{def:example}
+  此处填写定义。
+  \end{definition}
+\end{definitionbox}
+```
+
+定理、命题和证明分别以相同方式放入 `mainresultbox`、`keypropositionbox` 和 `keyproofbox`。
+
 ## 参考文献
 
 在 `references.bib` 中添加文献条目，并通过引用键使用：

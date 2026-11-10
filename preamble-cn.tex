@@ -19,6 +19,7 @@
   \renewcommand{\proofname}{证明}%
 }
 \patchcmd{\theorem}{Theorem}{定理}{}{}
+\patchcmd{\proposition}{Proposition}{命题}{}{}
 \patchcmd{\lemma}{Lemma}{引理}{}{}
 \patchcmd{\definition}{Definition}{定义}{}{}
 \patchcmd{\remark}{Remark}{注}{}{}
@@ -32,6 +33,12 @@
 \Crefname{section}{节}{节}
 \crefname{theorem}{定理}{定理}
 \Crefname{theorem}{定理}{定理}
+\crefname{proposition}{命题}{命题}
+\Crefname{proposition}{命题}{命题}
+\crefname{lemma}{引理}{引理}
+\Crefname{lemma}{引理}{引理}
+\crefname{definition}{定义}{定义}
+\Crefname{definition}{定义}{定义}
 \fancypagestyle{firststyle}{
   \fancyhf{}
   \fancyfoot[C]{\thepage}
