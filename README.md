@@ -2,34 +2,23 @@
 
 本分支为中文版（`cn`）。中文入口为 `main-cn.tex`；英文版位于 `main` 分支。
 
-吉林大学主题的中英文 LaTeX 科研论文模板，默认采用 A4 双栏排版，包含校徽、作者单位、摘要、公式、流程图、三线表、定理与证明、参考文献和附录示例。
+吉林大学主题的中文 LaTeX 科研论文模板，默认采用 A4 双栏排版，包含校徽、作者单位、摘要、公式、流程图、三线表、定理与证明、参考文献和附录示例。
 
 本项目不是吉林大学本科、硕士或博士学位论文的官方模板。用于投稿时，请根据期刊或会议要求调整格式。正文、作者信息和实验数据均为占位示例，需要替换为真实内容。
 
 ## 快速开始
 
-在项目根目录执行对应命令：
-
-| 版本 | 主文件 | 编译器 | 编译命令 | 输出 |
-| --- | --- | --- | --- | --- |
-| 英文 | `main.tex` | pdfLaTeX | `latexmk -pdf main.tex` | `main.pdf` |
-| 中文 | `main-cn.tex` | XeLaTeX | `latexmk -xelatex main-cn.tex` | `main-cn.pdf` |
-
-首次使用时，选择一个主文件，填写题目、作者、学院和摘要，然后替换正文及参考文献。两个版本共用排版类、校徽和参考文献库，可以分别编译。
+在项目根目录运行 `latexmk -xelatex main-cn.tex`，生成 `main-cn.pdf`。首次使用时，在 `main-cn.tex` 中填写题目、作者、学院和摘要，然后替换正文及参考文献。
 
 ## 环境与编译
 
 ### 本地环境
 
-建议安装完整的 TeX Live，包含 `latexmk`、pdfLaTeX、XeLaTeX、BibTeX，以及 `ctex`、`fontspec`、TikZ、`tcolorbox` 等宏包。精简安装需补齐缺失宏包和字体。中文源文件使用 UTF-8 编码。
+建议安装完整的 TeX Live，包含 `latexmk`、XeLaTeX、BibTeX，以及 `ctex`、`fontspec`、TikZ、`tcolorbox` 等宏包。精简安装需补齐缺失宏包和字体。中文源文件使用 UTF-8 编码。
 
 请保留 `fonts/` 目录中项目自带的 `ByteSans-*.ttf` 和 `bytesans*.tfm` 文件。中文版使用 TeX Live 自带的 Fandol 中文字体，无需安装系统宋体。
 
 ```sh
-# 英文版
-latexmk -pdf main.tex
-
-# 中文版
 latexmk -xelatex main-cn.tex
 ```
 
@@ -38,13 +27,6 @@ latexmk -xelatex main-cn.tex
 没有 `latexmk` 时，依次执行：
 
 ```sh
-# 英文版
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
-
-# 中文版
 xelatex main-cn.tex
 bibtex main-cn
 xelatex main-cn.tex
@@ -54,36 +36,32 @@ xelatex main-cn.tex
 清理中间文件并保留 PDF：
 
 ```sh
-latexmk -c main.tex
 latexmk -c main-cn.tex
 ```
 
 ### Overleaf
 
-上传整个项目，保留 `fonts/` 和 `figures/` 目录。在项目设置中，根据上表选择主文件和编译器，然后重新编译。不要只切换主文件而忽略编译器设置。
-
-英文版依赖 pdfTeX 字体映射，使用 pdfLaTeX；中文版入口包含兼容配置，使用 XeLaTeX。不要直接将英文版切换到 XeLaTeX，也不要用 pdfLaTeX 编译中文版。
+上传整个项目，保留 `fonts/` 和 `figures/` 目录。在项目设置中选择主文件 `main-cn.tex` 和 XeLaTeX 编译器，然后重新编译。
 
 ## 文件说明
 
 | 文件或目录 | 用途 |
 | --- | --- |
-| `main.tex` | 英文论文入口：论文信息、摘要和完整正文示例 |
 | `main-cn.tex` | 中文论文入口：论文信息、摘要、关键词和完整正文示例 |
 | `paper.cls` | 基础排版类，包含主题色 `jlublue` 的唯一颜色定义 |
 | `preamble.tex` | 公共配置：A4 页面、校徽、首页校名、数学命令、定理和提示框 |
 | `preamble-cn.tex` | 中文配置：加载公共配置，设置字体、缩进及中文标签 |
-| `references.bib` | 两个版本共用的 BibTeX 文献库 |
+| `references.bib` | BibTeX 文献库 |
 | `figures/` | 插图目录，`jlu.pdf` 为现有的吉林大学校徽 |
 | `fonts/ByteSans-Bold.ttf`、`fonts/ByteSans-Medium.ttf` | 标题等位置使用的英文字体 |
-| `fonts/bytesans.tfm`、`fonts/bytesansmedium.tfm` | 英文版 pdfTeX 使用的字体度量文件 |
+| `fonts/bytesans.tfm`、`fonts/bytesansmedium.tfm` | 类文件保留的 pdfTeX 字体度量文件 |
 | `.gitignore` | 忽略编译中间文件和主文档 PDF，保留插图 PDF |
 
 中文版通过 `preamble-cn.tex` 加载 `preamble.tex`，不需要再次手动引入公共配置。日常添加宏包或修改主题配置时，优先编辑相应的导言区文件。
 
 ## 填写论文信息
 
-论文信息写在所选主文件的 `\begin{document}` 之前。中文示例：
+论文信息写在 `main-cn.tex` 的 `\begin{document}` 之前。例如：
 
 ```tex
 \title{论文标题：\\可选副标题}
@@ -98,8 +76,6 @@ latexmk -c main-cn.tex
 \abstract{这里填写论文摘要。}
 ```
 
-英文版填写相应英文内容，将 `School of Your Discipline` 替换为学院英文名。英文入口使用 `\correspondence{\email{author@example.com}}` 设置通讯邮箱，也可以用 `\checkdata[Keywords]{...}` 添加关键词。
-
 多个单位按编号关联：
 
 ```tex
@@ -112,7 +88,7 @@ latexmk -c main-cn.tex
 
 ## 正文与插图
 
-使用 `\section`、`\subsection` 等组织正文。两个入口均提供可直接替换的公式、定理、表格和流程图示例。
+使用 `\section`、`\subsection` 等组织正文。入口文件提供可直接替换的公式、定理、表格和流程图示例。
 
 图片放入 `figures/`，使用如下方式插入；`\caption` 后放置 `\label`：
 
@@ -180,11 +156,11 @@ latexmk -c main-cn.tex
 % \paperlogo{}                  % 隐藏校徽
 ```
 
-英文首页校名为 `JILIN UNIVERSITY`，中文首页为“吉林大学 JILIN UNIVERSITY”。分别在 `preamble.tex` 和 `preamble-cn.tex` 的 `firststyle` 页眉配置中调整。
+首页校名为“吉林大学 JILIN UNIVERSITY”，可在 `preamble-cn.tex` 的 `firststyle` 页眉配置中调整。
 
 主题色统一使用 `jlublue`，在 `paper.cls` 中定义为 `1D5CAB`。如需调整颜色，修改这一处定义即可，无需在导言区重复定义颜色。
 
-页面边距和页眉高度通过 `preamble.tex` 中的 `\geometry{...}` 调整。修改这一配置会同时影响中英文版本。
+页面边距和页眉高度通过 `preamble.tex` 中的 `\geometry{...}` 调整。
 
 ### 中文字体
 
