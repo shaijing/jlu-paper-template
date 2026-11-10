@@ -37,6 +37,36 @@ latexmk -pdf main.tex
 
 首页右上角默认显示 `figures/jlu.pdf`。可在 `main.tex` 中用 `\paperlogo{figures/your-logo.pdf}` 替换，或用 `\paperlogo{}` 隐藏。主题色 `jlublue` 在 `paper.cls` 中定义，页边距和首页页眉在 `preamble.tex` 中调整。
 
+## 公式与证明的配色框
+
+`preamble.tex` 预定义了五个可换行的 `tcolorbox` 环境：
+
+| 环境 | 配色 | 用途 |
+| --- | --- | --- |
+| `mainresultbox` | 校蓝 | 主要定理或核心结果 |
+| `keypropositionbox` | 绿色 | 关键命题或公式 |
+| `keylemmabox` | 青色 | 引理 |
+| `definitionbox` | 紫色 | 定义 |
+| `keyproofbox` | 橙色 | 对应的证明 |
+
+把 `theorem`、`proposition`、`lemma`、`definition`、`equation` 或 `proof` 放在配色框内，原环境的编号和 `\label` 引用仍然有效。例如：
+
+```tex
+\begin{keylemmabox}
+  \begin{lemma}\label{lem:example}
+  State the claim here.
+  \end{lemma}
+\end{keylemmabox}
+
+\begin{definitionbox}
+  \begin{definition}\label{def:example}
+  Define the central term here.
+  \end{definition}
+\end{definitionbox}
+```
+
+定理、命题和证明分别以相同方式放入 `mainresultbox`、`keypropositionbox` 和 `keyproofbox`。原有的 `highlightbox` 继续用于带标题的文字提示。
+
 ## 来源与许可
 
 排版类基于原 `ustc_conference.cls` 整理，来源注释保留于 `paper.cls`。原始源文件中未附独立许可说明，本目录未为原有类文件与字体另行声明许可证。公开分发时请核实原始资源及校徽的使用许可。
